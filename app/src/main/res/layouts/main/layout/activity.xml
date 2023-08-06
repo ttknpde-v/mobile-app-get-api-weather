@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".controller.MainActivity"
+        android:background="#E8E5E5"
+        tools:ignore="HardcodedText">
+    <!--the usual bottom navigation bar with items-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <!-- Input -->
+        <LinearLayout
+                android:layout_marginTop="20dp"
+                android:id="@+id/layoutInput"
+                app:layout_constraintTop_toTopOf="@id/constraintMain"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp">
+            <!--this is the filled layout box for the edit text-->
+            <!--this layout must be used to reposition or change
+                    the height and width of the edit text-->
+            <TextView
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:padding="15sp"
+                    android:textSize="35sp"
+                    android:text="Get the weather api"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            <com.google.android.material.textfield.TextInputLayout
+                    android:layout_gravity="center"
+                    android:id="@+id/textLayout"
+                    android:layout_width="300sp"
+                    app:hintTextAppearance="@android:style/TextAppearance"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="Enter some cities...">
+                <!--this is the actual edit text which takes the input-->
+                <com.google.android.material.textfield.TextInputEditText
+                        android:singleLine="true"
+                        android:id="@+id/editCity"
+                        android:textSize="30sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="80sp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <!-- Input -->
+
+        <!-- Output temp and icon -->
+        <LinearLayout
+                android:layout_margin="15sp"
+                android:id="@+id/layoutOutputTempIcon"
+                android:gravity="center"
+                android:layout_marginTop="40sp"
+                app:layout_constraintTop_toBottomOf="@id/layoutInput"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp">
+            <TextView
+                    android:textColorHint="#C6C2C2"
+                    android:hint="00.00° C"
+                    android:id="@+id/resultTemp"
+                    android:textSize="150sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            <ImageView
+                    android:src="@mipmap/icon_weather"
+                    android:layout_margin="20sp"
+                    android:layout_gravity="center"
+                    android:id="@+id/resultIconWeather"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:scaleType="centerCrop"
+                    android:outlineSpotShadowColor="#FFEB3B"/>
+        </LinearLayout>
+        <!-- Output temp and icon -->
+
+        <!-- Output temp min and temp max -->
+        <LinearLayout
+                android:layout_margin="15sp"
+                android:id="@+id/layoutOutputTempMinMax"
+                android:gravity="center"
+                android:layout_marginTop="40sp"
+                app:layout_constraintTop_toBottomOf="@id/layoutOutputTempIcon"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp">
+            <androidx.cardview.widget.CardView
+                    android:layout_margin="15sp"
+                    android:layout_width="350sp"
+                    android:layout_height="320sp"
+                    app:cardBackgroundColor="#E3E3E3"
+                    app:cardCornerRadius="60sp"
+                    android:id="@+id/cardTempMin">
+                <!--app:cardBackgroundColor="@color/custom_gold2"-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <TextView
+                            android:id="@+id/textHeaderTempMin"
+                            android:gravity="center"
+                            android:textSize="40sp"
+                            android:textStyle="bold"
+                            android:text="minimum"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            app:layout_constraintBottom_toTopOf="@+id/resultTempMinimum"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+                    <TextView
+                            android:gravity="center"
+                            android:textSize="80sp"
+                            app:layout_constraintTop_toBottomOf="@+id/textHeaderTempMin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColorHint="#C6C2C2"
+
+                            android:hint="00.00° C"
+                            tools:layout_editor_absoluteX="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintVertical_bias="0.302"
+                            android:layout_marginBottom="30dp"
+                            android:id="@+id/resultTempMinimum"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                    android:layout_margin="15sp"
+                    android:layout_width="350sp"
+                    android:layout_height="320sp"
+                    app:cardBackgroundColor="#E3E3E3"
+                    app:cardCornerRadius="60sp"
+                    android:id="@+id/cardTempMax">
+                <!--app:cardBackgroundColor="@color/custom_gold2"-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                    <TextView
+                            android:id="@+id/textHeaderTempMax"
+                            android:gravity="center"
+                            android:textSize="40sp"
+                            android:textStyle="bold"
+                            android:text="maximum"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            app:layout_constraintBottom_toTopOf="@+id/resultTempMaximum"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+                    <TextView
+                            android:gravity="center"
+                            android:textSize="80sp"
+                            android:textColorHint="#C6C2C2"
+
+                            android:hint="00.00° C"
+                            app:layout_constraintTop_toBottomOf="@+id/textHeaderTempMax"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:layout_editor_absoluteX="0dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintVertical_bias="0.302"
+                            android:layout_marginBottom="30dp"
+                            android:id="@+id/resultTempMaximum"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+        <!-- Output temp min and temp max -->
+
+        <!---->
+        <LinearLayout
+                android:layout_margin="25sp"
+                android:id="@+id/layoutOutputDescription"
+                android:gravity="center"
+                android:layout_marginTop="40sp"
+                app:layout_constraintTop_toBottomOf="@id/layoutOutputTempMinMax"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp">
+            <TextView
+                    android:id="@+id/resultPredictDate"
+                    android:layout_margin="10sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColorHint="#C6C2C2"
+                    android:hint="Prediction today 20XX-XX-XX"
+                    android:textSize="50sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            />
+            <TextView
+                    android:id="@+id/resultDescription"
+                    android:layout_margin="10sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColorHint="#C6C2C2"
+                    android:hint="..."
+                    android:textSize="50sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            />
+            <TextView
+                    android:textColorHint="#C6C2C2"
+                    android:hint="..."
+                    android:id="@+id/resultMain"
+                    android:layout_margin="10sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="50sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/purple_700"
+            app:backgroundTint="@color/purple_500"
+            app:fabCradleMargin="10dp"
+            app:fabAlignmentMode="end"
+            app:menu="@menu/menu_bottom_custom"/>
+    <!--android:backgroundTint="@color/custom_gold1"-->
+    <!-- app:menu="@menu/menu_button" -->
+    <!--the normal Floating action button which is
+        anchored to the bottom navigation button-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+
+            android:id="@+id/fabCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple_500"
+            android:contentDescription="@string/app_name"
+            app:backgroundTint="@color/purple_500"
+            app:layout_anchor="@id/bottomAppBar"
+            app:srcCompat="@drawable/baseline_search_24"
+            />
+    <!--app:srcCompat="@drawable/baseline_search_24" -->
+    <!--app:backgroundTint="@color/custom_gold2"-->
+    <!-- app:backgroundTint="@color/custom_gold2" set ขอบ-->
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

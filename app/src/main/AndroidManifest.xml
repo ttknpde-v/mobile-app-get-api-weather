@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- 4 , 5 line for using internet -->
+    <application
+            android:allowBackup="true"
+            android:dataExtractionRules="@xml/data_extraction_rules"
+            android:fullBackupContent="@xml/backup_rules"
+            android:icon="@mipmap/icon"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.TheWeather"
+            tools:targetApi="31"
+            android:networkSecurityConfig="@xml/network_security_config">
+        <!--
+        To configure the clearTextTrafficPermited flag, we need to set the network security config at the manifest file level like below
+        android:networkSecurityConfig="@xml/network_security_config"
+        The Network Security Configuration feature lets you customize your app's network security settings in a safe The key capabilities of this are
+        Custom trust anchors: Customize which Certificate Authorities (CA) are trusted for an app's secure connections. For example, trusting particular self-signed certificates or restricting the set of public CAs that the app trusts.
+        Debug-only overrides: Safely debug secure connections in an app without added risk to the installed base.
+        Cleartext traffic opt-out: Protect apps from accidental usage of cleartext (unencrypted) traffic.
+        Certificate pinning: Restrict an app's secure connection to particular certificates.
+        *** very importance for get protocol http
+        *** <uses-permission android:name="android.permission.INTERNET"/>
+        *** <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+        ***** android:networkSecurityConfig="@xml/network_security_config"
+        -->
+        <activity
+                android:name=".controller.MainActivity"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.app.lib_name"
+                    android:value=""/>
+        </activity>
+    </application>
+
+</manifest>
